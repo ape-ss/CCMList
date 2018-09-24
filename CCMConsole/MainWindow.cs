@@ -313,5 +313,28 @@ namespace CCMList
                     break;
             }
         }
+
+        private void mainList_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Level != 0)
+            {
+                statusIpAddress.Text = e.Node.Name;
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            editNodeToolStripMenuItem.PerformClick();
+        }
+
+        private void contextMenu_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void addNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            buttonNewNode.PerformClick();
+        }
     }
 }

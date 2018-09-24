@@ -35,12 +35,14 @@
             this.statusIpAddress = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainList = new System.Windows.Forms.TreeView();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolImages = new System.Windows.Forms.ImageList(this.components);
             this.toolBar = new System.Windows.Forms.ToolStrip();
             this.buttonNewFolder = new System.Windows.Forms.ToolStripButton();
             this.buttonNewNode = new System.Windows.Forms.ToolStripButton();
+            this.buttonEditNode = new System.Windows.Forms.ToolStripButton();
             this.buttonConnect = new System.Windows.Forms.ToolStripButton();
             this.buttonSaveList = new System.Windows.Forms.ToolStripButton();
             this.buttonOpenList = new System.Windows.Forms.ToolStripButton();
@@ -100,6 +102,7 @@
             this.mainList.ItemHeight = 22;
             this.mainList.Name = "mainList";
             this.mainList.StateImageList = this.toolImages;
+            this.mainList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mainList_AfterSelect);
             this.mainList.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mainList_NodeMouseClick);
             this.mainList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mainList_NodeMouseDoubleClick);
             this.mainList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mainList_KeyPress);
@@ -108,10 +111,19 @@
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addNodeToolStripMenuItem,
             this.editNodeToolStripMenuItem,
             this.deleteNodeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             resources.ApplyResources(this.contextMenu, "contextMenu");
+            this.contextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenu_Opening);
+            // 
+            // addNodeToolStripMenuItem
+            // 
+            this.addNodeToolStripMenuItem.Image = global::CCMList.Properties.Resources.computer__plus;
+            this.addNodeToolStripMenuItem.Name = "addNodeToolStripMenuItem";
+            resources.ApplyResources(this.addNodeToolStripMenuItem, "addNodeToolStripMenuItem");
+            this.addNodeToolStripMenuItem.Click += new System.EventHandler(this.addNodeToolStripMenuItem_Click);
             // 
             // editNodeToolStripMenuItem
             // 
@@ -146,6 +158,7 @@
             this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonNewFolder,
             this.buttonNewNode,
+            this.buttonEditNode,
             this.buttonConnect,
             this.buttonSaveList,
             this.buttonOpenList,
@@ -169,6 +182,15 @@
             this.buttonNewNode.Name = "buttonNewNode";
             this.buttonNewNode.Padding = new System.Windows.Forms.Padding(5);
             this.buttonNewNode.Click += new System.EventHandler(this.buttonNewNode_Click);
+            // 
+            // buttonEditNode
+            // 
+            this.buttonEditNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonEditNode.Image = global::CCMList.Properties.Resources.computer__pencil;
+            resources.ApplyResources(this.buttonEditNode, "buttonEditNode");
+            this.buttonEditNode.Name = "buttonEditNode";
+            this.buttonEditNode.Padding = new System.Windows.Forms.Padding(5);
+            this.buttonEditNode.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // buttonConnect
             // 
@@ -296,6 +318,8 @@
         private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton buttonEditNode;
+        private System.Windows.Forms.ToolStripMenuItem addNodeToolStripMenuItem;
     }
 }
 
