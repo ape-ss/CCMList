@@ -183,8 +183,16 @@ namespace CCMList
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveTree(mainList.Nodes, homeDir + "pclist.xml");
-            Properties.Settings.Default.MainFormLocation = Location;
-            Properties.Settings.Default.MainFormSize = Size;
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Properties.Settings.Default.MainFormLocation = Properties.Settings.Default.MainFormLocation;
+                Properties.Settings.Default.MainFormSize = Properties.Settings.Default.MainFormSize;
+            }
+            else
+            {
+                Properties.Settings.Default.MainFormLocation = Location;
+                Properties.Settings.Default.MainFormSize = Size;
+            }
             Properties.Settings.Default.Save();
         }
 
