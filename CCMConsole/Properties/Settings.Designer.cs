@@ -58,5 +58,41 @@ namespace CCMList.Properties {
                 this["MainFormSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ToolBarState {
+            get {
+                return ((bool)(this["ToolBarState"]));
+            }
+            set {
+                this["ToolBarState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StatusBarState {
+            get {
+                return ((bool)(this["StatusBarState"]));
+            }
+            set {
+                this["StatusBarState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DetailsState {
+            get {
+                return ((bool)(this["DetailsState"]));
+            }
+            set {
+                this["DetailsState"] = value;
+            }
+        }
     }
 }

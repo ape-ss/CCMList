@@ -33,12 +33,38 @@
             this.mainContainer = new System.Windows.Forms.ToolStripContainer();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusIpAddress = new System.Windows.Forms.ToolStripStatusLabel();
+            this.grid = new System.Windows.Forms.TableLayoutPanel();
             this.mainList = new System.Windows.Forms.TreeView();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolImages = new System.Windows.Forms.ImageList(this.components);
+            this.groupDetails = new System.Windows.Forms.GroupBox();
+            this.labelDomainName = new System.Windows.Forms.Label();
+            this.labelIPAddress = new System.Windows.Forms.Label();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.menuList = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddPC = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuLaunchSCCM = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDeleteNode = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuToolbarStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDetailsState = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStatusbarState = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuImportPCList = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuExportPCList = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBar = new System.Windows.Forms.ToolStrip();
             this.buttonNewFolder = new System.Windows.Forms.ToolStripButton();
             this.buttonNewNode = new System.Windows.Forms.ToolStripButton();
@@ -59,7 +85,10 @@
             this.mainContainer.TopToolStripPanel.SuspendLayout();
             this.mainContainer.SuspendLayout();
             this.statusBar.SuspendLayout();
+            this.grid.SuspendLayout();
             this.contextMenu.SuspendLayout();
+            this.groupDetails.SuspendLayout();
+            this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.trayMenu.SuspendLayout();
             this.SuspendLayout();
@@ -73,13 +102,14 @@
             // 
             // mainContainer.ContentPanel
             // 
-            this.mainContainer.ContentPanel.Controls.Add(this.mainList);
+            this.mainContainer.ContentPanel.Controls.Add(this.grid);
             resources.ApplyResources(this.mainContainer.ContentPanel, "mainContainer.ContentPanel");
             resources.ApplyResources(this.mainContainer, "mainContainer");
             this.mainContainer.Name = "mainContainer";
             // 
             // mainContainer.TopToolStripPanel
             // 
+            this.mainContainer.TopToolStripPanel.Controls.Add(this.mainMenu);
             this.mainContainer.TopToolStripPanel.Controls.Add(this.toolBar);
             // 
             // statusBar
@@ -93,6 +123,13 @@
             // 
             resources.ApplyResources(this.statusIpAddress, "statusIpAddress");
             this.statusIpAddress.Name = "statusIpAddress";
+            // 
+            // grid
+            // 
+            resources.ApplyResources(this.grid, "grid");
+            this.grid.Controls.Add(this.mainList, 0, 0);
+            this.grid.Controls.Add(this.groupDetails, 0, 1);
+            this.grid.Name = "grid";
             // 
             // mainList
             // 
@@ -151,6 +188,190 @@
             this.toolImages.Images.SetKeyName(5, "folder-open.png");
             this.toolImages.Images.SetKeyName(6, "folder-horizontal.png");
             this.toolImages.Images.SetKeyName(7, "folder-horizontal-open.png");
+            // 
+            // groupDetails
+            // 
+            this.groupDetails.Controls.Add(this.labelDomainName);
+            this.groupDetails.Controls.Add(this.labelIPAddress);
+            resources.ApplyResources(this.groupDetails, "groupDetails");
+            this.groupDetails.Name = "groupDetails";
+            this.groupDetails.TabStop = false;
+            // 
+            // labelDomainName
+            // 
+            resources.ApplyResources(this.labelDomainName, "labelDomainName");
+            this.labelDomainName.Name = "labelDomainName";
+            // 
+            // labelIPAddress
+            // 
+            resources.ApplyResources(this.labelIPAddress, "labelIPAddress");
+            this.labelIPAddress.Name = "labelIPAddress";
+            // 
+            // mainMenu
+            // 
+            resources.ApplyResources(this.mainMenu, "mainMenu");
+            this.mainMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuList,
+            this.menuEdit,
+            this.menuView,
+            this.menuTools,
+            this.menuHelp});
+            this.mainMenu.Name = "mainMenu";
+            // 
+            // menuList
+            // 
+            this.menuList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuAddFolder,
+            this.menuAddPC,
+            this.toolStripMenuItem2,
+            this.menuLaunchSCCM,
+            this.toolStripMenuItem3,
+            this.menuExit});
+            this.menuList.Name = "menuList";
+            resources.ApplyResources(this.menuList, "menuList");
+            // 
+            // menuAddFolder
+            // 
+            this.menuAddFolder.Image = global::CCMList.Properties.Resources.folder__plus;
+            this.menuAddFolder.Name = "menuAddFolder";
+            resources.ApplyResources(this.menuAddFolder, "menuAddFolder");
+            this.menuAddFolder.Click += new System.EventHandler(this.newgroupToolStripMenuItem_Click);
+            // 
+            // menuAddPC
+            // 
+            this.menuAddPC.Image = global::CCMList.Properties.Resources.computer__plus;
+            this.menuAddPC.Name = "menuAddPC";
+            resources.ApplyResources(this.menuAddPC, "menuAddPC");
+            this.menuAddPC.Click += new System.EventHandler(this.newPCToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            // 
+            // menuLaunchSCCM
+            // 
+            this.menuLaunchSCCM.Name = "menuLaunchSCCM";
+            resources.ApplyResources(this.menuLaunchSCCM, "menuLaunchSCCM");
+            this.menuLaunchSCCM.Click += new System.EventHandler(this.menuLaunchSCCM_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            // 
+            // menuExit
+            // 
+            this.menuExit.Name = "menuExit";
+            resources.ApplyResources(this.menuExit, "menuExit");
+            this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
+            // 
+            // menuEdit
+            // 
+            this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuProperties,
+            this.menuDeleteNode});
+            this.menuEdit.Name = "menuEdit";
+            resources.ApplyResources(this.menuEdit, "menuEdit");
+            // 
+            // menuProperties
+            // 
+            this.menuProperties.Image = global::CCMList.Properties.Resources.computer__pencil;
+            this.menuProperties.Name = "menuProperties";
+            resources.ApplyResources(this.menuProperties, "menuProperties");
+            this.menuProperties.Click += new System.EventHandler(this.menuProperties_Click);
+            // 
+            // menuDeleteNode
+            // 
+            this.menuDeleteNode.Image = global::CCMList.Properties.Resources.computer__minus;
+            this.menuDeleteNode.Name = "menuDeleteNode";
+            resources.ApplyResources(this.menuDeleteNode, "menuDeleteNode");
+            this.menuDeleteNode.Click += new System.EventHandler(this.menuDeleteNode_Click);
+            // 
+            // menuView
+            // 
+            this.menuView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolbarStatus,
+            this.menuDetailsState,
+            this.menuStatusbarState});
+            this.menuView.Name = "menuView";
+            resources.ApplyResources(this.menuView, "menuView");
+            // 
+            // menuToolbarStatus
+            // 
+            this.menuToolbarStatus.Checked = true;
+            this.menuToolbarStatus.CheckOnClick = true;
+            this.menuToolbarStatus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuToolbarStatus.Name = "menuToolbarStatus";
+            resources.ApplyResources(this.menuToolbarStatus, "menuToolbarStatus");
+            this.menuToolbarStatus.CheckStateChanged += new System.EventHandler(this.menuToolbarStatus_CheckStateChanged);
+            // 
+            // menuDetailsState
+            // 
+            this.menuDetailsState.Checked = true;
+            this.menuDetailsState.CheckOnClick = true;
+            this.menuDetailsState.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuDetailsState.Name = "menuDetailsState";
+            resources.ApplyResources(this.menuDetailsState, "menuDetailsState");
+            this.menuDetailsState.CheckStateChanged += new System.EventHandler(this.detailsToolStripMenuItem_CheckStateChanged);
+            // 
+            // menuStatusbarState
+            // 
+            this.menuStatusbarState.Checked = true;
+            this.menuStatusbarState.CheckOnClick = true;
+            this.menuStatusbarState.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuStatusbarState.Name = "menuStatusbarState";
+            resources.ApplyResources(this.menuStatusbarState, "menuStatusbarState");
+            this.menuStatusbarState.CheckStateChanged += new System.EventHandler(this.statusbarToolStripMenuItem_CheckStateChanged);
+            // 
+            // menuTools
+            // 
+            this.menuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuOptions,
+            this.toolStripMenuItem4,
+            this.menuImportPCList,
+            this.menuExportPCList});
+            this.menuTools.Name = "menuTools";
+            resources.ApplyResources(this.menuTools, "menuTools");
+            this.menuTools.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
+            // 
+            // menuOptions
+            // 
+            this.menuOptions.Name = "menuOptions";
+            resources.ApplyResources(this.menuOptions, "menuOptions");
+            this.menuOptions.Click += new System.EventHandler(this.menuOptions_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            // 
+            // menuImportPCList
+            // 
+            this.menuImportPCList.Image = global::CCMList.Properties.Resources.folder_import;
+            this.menuImportPCList.Name = "menuImportPCList";
+            resources.ApplyResources(this.menuImportPCList, "menuImportPCList");
+            this.menuImportPCList.Click += new System.EventHandler(this.menuImportPCList_Click);
+            // 
+            // menuExportPCList
+            // 
+            this.menuExportPCList.Image = global::CCMList.Properties.Resources.folder_export;
+            this.menuExportPCList.Name = "menuExportPCList";
+            resources.ApplyResources(this.menuExportPCList, "menuExportPCList");
+            this.menuExportPCList.Click += new System.EventHandler(this.menuExportPCList_Click);
+            // 
+            // menuHelp
+            // 
+            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.menuHelp.Name = "menuHelp";
+            resources.ApplyResources(this.menuHelp, "menuHelp");
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             // 
             // toolBar
             // 
@@ -251,6 +472,7 @@
             this.exitToolStripMenuItem});
             this.trayMenu.Name = "trayMenu";
             resources.ApplyResources(this.trayMenu, "trayMenu");
+            this.trayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.trayMenu_Opening);
             // 
             // restoreToolStripMenuItem
             // 
@@ -274,6 +496,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mainContainer);
+            this.MainMenuStrip = this.mainMenu;
             this.Name = "MainWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Resize += new System.EventHandler(this.MainWindow_Resize);
@@ -286,7 +509,12 @@
             this.mainContainer.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            this.grid.ResumeLayout(false);
             this.contextMenu.ResumeLayout(false);
+            this.groupDetails.ResumeLayout(false);
+            this.groupDetails.PerformLayout();
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
             this.toolBar.ResumeLayout(false);
             this.toolBar.PerformLayout();
             this.trayMenu.ResumeLayout(false);
@@ -298,7 +526,6 @@
 
         private System.Windows.Forms.ToolStripContainer mainContainer;
         private System.Windows.Forms.StatusStrip statusBar;
-        private System.Windows.Forms.TreeView mainList;
         private System.Windows.Forms.ToolStrip toolBar;
         private System.Windows.Forms.ImageList toolImages;
         private System.Windows.Forms.ToolStripButton buttonNewNode;
@@ -320,6 +547,33 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton buttonEditNode;
         private System.Windows.Forms.ToolStripMenuItem addNodeToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.ToolStripMenuItem menuList;
+        private System.Windows.Forms.ToolStripMenuItem menuAddFolder;
+        private System.Windows.Forms.ToolStripMenuItem menuAddPC;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem menuLaunchSCCM;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem menuExit;
+        private System.Windows.Forms.ToolStripMenuItem menuEdit;
+        private System.Windows.Forms.ToolStripMenuItem menuProperties;
+        private System.Windows.Forms.ToolStripMenuItem menuDeleteNode;
+        private System.Windows.Forms.ToolStripMenuItem menuView;
+        private System.Windows.Forms.ToolStripMenuItem menuToolbarStatus;
+        private System.Windows.Forms.ToolStripMenuItem menuDetailsState;
+        private System.Windows.Forms.ToolStripMenuItem menuStatusbarState;
+        private System.Windows.Forms.ToolStripMenuItem menuTools;
+        private System.Windows.Forms.ToolStripMenuItem menuOptions;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem menuImportPCList;
+        private System.Windows.Forms.ToolStripMenuItem menuExportPCList;
+        private System.Windows.Forms.ToolStripMenuItem menuHelp;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel grid;
+        private System.Windows.Forms.TreeView mainList;
+        private System.Windows.Forms.GroupBox groupDetails;
+        private System.Windows.Forms.Label labelDomainName;
+        private System.Windows.Forms.Label labelIPAddress;
     }
 }
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -19,6 +20,8 @@ namespace CCMList
 
         //private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\CCMList\";
         private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\CCMList\";
+        private string PcAddress;
+        private string DomainName;
         /// <summary>
         /// Метод сохраняет дерево из TreeView в XML файл
         /// </summary>
@@ -110,9 +113,17 @@ namespace CCMList
             {
                 Size = Properties.Settings.Default.MainFormSize;
             }
+            PcAddress = labelIPAddress.Text;
+            DomainName = labelDomainName.Text;
+            toolBar.Visible = Properties.Settings.Default.ToolBarState;
+            statusBar.Visible = Properties.Settings.Default.StatusBarState;
+            groupDetails.Visible = Properties.Settings.Default.DetailsState;
+            menuToolbarStatus.Checked = Properties.Settings.Default.ToolBarState;
+            menuDetailsState.Checked = Properties.Settings.Default.DetailsState;
+            menuStatusbarState.Checked = Properties.Settings.Default.StatusBarState; ;
         }
 
-        private void buttonNewFolder_Click(object sender, EventArgs e)
+        private void AddFolder()
         {
             AddFolderDialog fd = new AddFolderDialog();
             if (fd.ShowDialog(this) == DialogResult.OK)
@@ -121,7 +132,7 @@ namespace CCMList
             }
         }
 
-        private void buttonNewNode_Click(object sender, EventArgs e)
+        private void AddPC()
         {
             AddPCDialog pcd = new AddPCDialog();
             if (pcd.ShowDialog(this) == DialogResult.OK)
@@ -132,12 +143,21 @@ namespace CCMList
                 {
                     mainList.SelectedNode.Nodes.Add(node);
                 }
-                catch(Exception E)
+                catch (Exception E)
                 {
-                    //MessageBox.Show(this, "Сначала надо добавьте папку");
                     MessageBox.Show(this, ResMessages.addFolder, ResMessages.addFolderCaption);
                 }
             }
+        }
+
+        private void buttonNewFolder_Click(object sender, EventArgs e)
+        {
+            AddFolder();
+        }
+
+        private void buttonNewNode_Click(object sender, EventArgs e)
+        {
+            AddPC();
         }
 
         private void mainList_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -215,14 +235,10 @@ namespace CCMList
 
         private void mainList_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            //if (e.Node.Level != 0)
-            //{
-            //    Process.Start(Properties.Settings.Default.CcmViewerPath, e.Node.Name);
-            //}
-            buttonConnect.PerformClick();
+            ConnectToPC();
         }
 
-        private void buttonConnect_Click(object sender, EventArgs e)
+        private void ConnectToPC()
         {
             if (!CheckCcmViewer())
             {
@@ -240,6 +256,11 @@ namespace CCMList
             }
         }
 
+        private void buttonConnect_Click(object sender, EventArgs e)
+        {
+            ConnectToPC();
+        }
+
         private void deleteNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mainList.SelectedNode.Level == 0 && mainList.SelectedNode.Nodes != null)
@@ -252,7 +273,7 @@ namespace CCMList
             }
         }
 
-        private void editNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditNode()
         {
             if (mainList.SelectedNode.Level == 0)
             {
@@ -272,6 +293,11 @@ namespace CCMList
                     mainList.SelectedNode.Name = pcd.DomainName;
                 }
             }
+        }
+
+        private void editNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditNode();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
@@ -324,15 +350,21 @@ namespace CCMList
 
         private void mainList_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            //TODO: Добавить определение хоста по айпи
             if (e.Node.Level != 0)
             {
                 statusIpAddress.Text = e.Node.Name;
+                labelIPAddress.Text = PcAddress + e.Node.Name;
+                //IPAddress addr = IPAddress.Parse(e.Node.Name);
+                IPHostEntry host = Dns.GetHostByAddress(e.Node.Name);
+                string[] domain = host.HostName.Split(new char[] { '.' });
+                labelDomainName.Text = DomainName + domain[0];
             }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            editNodeToolStripMenuItem.PerformClick();
+            EditNode();
         }
 
         private void contextMenu_Opening(object sender, CancelEventArgs e)
@@ -343,6 +375,82 @@ namespace CCMList
         private void addNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             buttonNewNode.PerformClick();
+        }
+
+        private void trayMenu_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statusbarToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            statusBar.Visible = menuStatusbarState.Checked;
+            Properties.Settings.Default.StatusBarState = menuStatusbarState.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void menuToolbarStatus_CheckStateChanged(object sender, EventArgs e)
+        {
+            toolBar.Visible = menuToolbarStatus.Checked;
+            Properties.Settings.Default.ToolBarState = menuToolbarStatus.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void detailsToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            groupDetails.Visible = menuDetailsState.Checked;
+            Properties.Settings.Default.DetailsState = menuDetailsState.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void newgroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddFolder();
+        }
+
+        private void newPCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddPC();
+        }
+
+        private void menuLaunchSCCM_Click(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Settings.Default.CcmViewerPath);
+        }
+
+        private void menuExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void menuProperties_Click(object sender, EventArgs e)
+        {
+            EditNode();
+        }
+
+        private void menuDeleteNode_Click(object sender, EventArgs e)
+        {
+            deleteNodeToolStripMenuItem.PerformClick();
+        }
+
+        private void menuOptions_Click(object sender, EventArgs e)
+        {
+            buttonOptions.PerformClick();
+        }
+
+        private void menuImportPCList_Click(object sender, EventArgs e)
+        {
+            buttonOpenList.PerformClick();
+        }
+
+        private void menuExportPCList_Click(object sender, EventArgs e)
+        {
+            buttonSaveList.PerformClick();
         }
     }
 }
