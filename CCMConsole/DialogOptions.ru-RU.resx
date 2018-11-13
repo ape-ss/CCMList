@@ -118,28 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 13</value>
+  <data name="labelSCCMPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 13</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Доменное имя:</value>
+  <data name="labelSCCMPath.Text" xml:space="preserve">
+    <value>Путь к SCCM:</value>
   </data>
-  <data name="lbAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
+  <data name="BtSelect.Text" xml:space="preserve">
+    <value>Обзор...</value>
   </data>
-  <data name="lbAddress.Text" xml:space="preserve">
-    <value>IP адрес:</value>
+  <data name="BtOk.Text" xml:space="preserve">
+    <value>Да</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Понятное имя:</value>
-  </data>
-  <data name="btAddPC.Text" xml:space="preserve">
-    <value>Подтвердить</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Добавить ПК</value>
+  <data name="BtApply.Text" xml:space="preserve">
+    <value>Применить</value>
   </data>
 </root>

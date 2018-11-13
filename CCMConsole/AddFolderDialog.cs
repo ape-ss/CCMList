@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CCMList
+namespace CCMAddrBook
 {
     public partial class AddFolderDialog : Form
     {

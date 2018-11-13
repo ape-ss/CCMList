@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CCMList
+namespace CCMAddrBook
 {
     [Serializable]
     public class ListNode
     {
         string name;
         string text;
+        string domainName;
         int level;
         int imageIndex;
         int selectedImageIndex;
@@ -22,7 +23,7 @@ namespace CCMList
 
         }
 
-        public ListNode(string name, string text, int level, int imageIndex, int selectedImageIndex, int index, ListNode parent = null)
+        public ListNode(string name, string text, string domain, int level, int imageIndex, int selectedImageIndex, int index, ListNode parent = null)
         {
             this.name = name;
             this.text = text;
@@ -30,12 +31,19 @@ namespace CCMList
             this.imageIndex = imageIndex;
             this.selectedImageIndex = selectedImageIndex;
             this.index = index;
+            this.domainName = domain;
         }
 
         public string Name
         {
             get { return name; }
             set { name = value; }
+        }
+
+        public string DomainName
+        {
+            get { return domainName; }
+            set { domainName = value; }
         }
 
         public string Text

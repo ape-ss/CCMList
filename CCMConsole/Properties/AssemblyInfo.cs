@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CCMList")]
+[assembly: AssemblyTitle("CCMAddrBook")]
 [assembly: AssemblyDescription("Simple sccm list tool")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CCMList")]
+[assembly: AssemblyProduct("CCMAddrBook")]
 [assembly: AssemblyCopyright("Copyright © Serhiy Halushko  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

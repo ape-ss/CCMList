@@ -1,4 +1,4 @@
-﻿namespace CCMList
+﻿namespace CCMAddrBook
 {
     partial class AddFolderDialog
     {

@@ -1,4 +1,4 @@
-﻿namespace CCMList
+﻿namespace CCMAddrBook
 {
     partial class MainWindow
     {
@@ -39,10 +39,19 @@
             this.addNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.copyIPAddressToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyDomainNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolImages = new System.Windows.Forms.ImageList(this.components);
             this.groupDetails = new System.Windows.Forms.GroupBox();
+            this.clipboardMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyIPAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyDomainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelDomainName = new System.Windows.Forms.Label();
             this.labelIPAddress = new System.Windows.Forms.Label();
+            this.DNSName = new System.Windows.Forms.Label();
+            this.IP = new System.Windows.Forms.Label();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.menuList = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +97,8 @@
             this.grid.SuspendLayout();
             this.contextMenu.SuspendLayout();
             this.groupDetails.SuspendLayout();
+            this.clipboardMenu.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.trayMenu.SuspendLayout();
@@ -133,48 +144,73 @@
             // 
             // mainList
             // 
+            this.mainList.AllowDrop = true;
             this.mainList.ContextMenuStrip = this.contextMenu;
             resources.ApplyResources(this.mainList, "mainList");
             this.mainList.ImageList = this.toolImages;
             this.mainList.ItemHeight = 22;
             this.mainList.Name = "mainList";
             this.mainList.StateImageList = this.toolImages;
+            this.mainList.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.mainList_ItemDrag);
             this.mainList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mainList_AfterSelect);
             this.mainList.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mainList_NodeMouseClick);
             this.mainList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mainList_NodeMouseDoubleClick);
+            this.mainList.DragDrop += new System.Windows.Forms.DragEventHandler(this.mainList_DragDrop);
+            this.mainList.DragEnter += new System.Windows.Forms.DragEventHandler(this.mainList_DragEnter);
+            this.mainList.DragOver += new System.Windows.Forms.DragEventHandler(this.mainList_DragOver);
             this.mainList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mainList_KeyPress);
             this.mainList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mainList_KeyUp);
+            this.mainList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainList_MouseDown);
             // 
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNodeToolStripMenuItem,
             this.editNodeToolStripMenuItem,
-            this.deleteNodeToolStripMenuItem});
+            this.deleteNodeToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.copyIPAddressToolStripMenuItem1,
+            this.copyDomainNameToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             resources.ApplyResources(this.contextMenu, "contextMenu");
-            this.contextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenu_Opening);
             // 
             // addNodeToolStripMenuItem
             // 
-            this.addNodeToolStripMenuItem.Image = global::CCMList.Properties.Resources.computer__plus;
+            this.addNodeToolStripMenuItem.Image = global::CCMAddrBook.Properties.Resources.computer__plus;
             this.addNodeToolStripMenuItem.Name = "addNodeToolStripMenuItem";
             resources.ApplyResources(this.addNodeToolStripMenuItem, "addNodeToolStripMenuItem");
             this.addNodeToolStripMenuItem.Click += new System.EventHandler(this.addNodeToolStripMenuItem_Click);
             // 
             // editNodeToolStripMenuItem
             // 
-            this.editNodeToolStripMenuItem.Image = global::CCMList.Properties.Resources.computer__pencil;
+            this.editNodeToolStripMenuItem.Image = global::CCMAddrBook.Properties.Resources.computer__pencil;
             this.editNodeToolStripMenuItem.Name = "editNodeToolStripMenuItem";
             resources.ApplyResources(this.editNodeToolStripMenuItem, "editNodeToolStripMenuItem");
             this.editNodeToolStripMenuItem.Click += new System.EventHandler(this.editNodeToolStripMenuItem_Click);
             // 
             // deleteNodeToolStripMenuItem
             // 
-            this.deleteNodeToolStripMenuItem.Image = global::CCMList.Properties.Resources.computer__minus;
+            this.deleteNodeToolStripMenuItem.Image = global::CCMAddrBook.Properties.Resources.computer__minus;
             this.deleteNodeToolStripMenuItem.Name = "deleteNodeToolStripMenuItem";
             resources.ApplyResources(this.deleteNodeToolStripMenuItem, "deleteNodeToolStripMenuItem");
             this.deleteNodeToolStripMenuItem.Click += new System.EventHandler(this.deleteNodeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
+            // 
+            // copyIPAddressToolStripMenuItem1
+            // 
+            this.copyIPAddressToolStripMenuItem1.Name = "copyIPAddressToolStripMenuItem1";
+            resources.ApplyResources(this.copyIPAddressToolStripMenuItem1, "copyIPAddressToolStripMenuItem1");
+            this.copyIPAddressToolStripMenuItem1.Click += new System.EventHandler(this.copyIPAddressToolStripMenuItem1_Click);
+            // 
+            // copyDomainNameToolStripMenuItem
+            // 
+            this.copyDomainNameToolStripMenuItem.Name = "copyDomainNameToolStripMenuItem";
+            resources.ApplyResources(this.copyDomainNameToolStripMenuItem, "copyDomainNameToolStripMenuItem");
+            this.copyDomainNameToolStripMenuItem.Click += new System.EventHandler(this.copyDomainNameToolStripMenuItem_Click);
             // 
             // toolImages
             // 
@@ -191,11 +227,40 @@
             // 
             // groupDetails
             // 
-            this.groupDetails.Controls.Add(this.labelDomainName);
-            this.groupDetails.Controls.Add(this.labelIPAddress);
+            this.groupDetails.ContextMenuStrip = this.clipboardMenu;
+            this.groupDetails.Controls.Add(this.tableLayoutPanel1);
             resources.ApplyResources(this.groupDetails, "groupDetails");
             this.groupDetails.Name = "groupDetails";
             this.groupDetails.TabStop = false;
+            // 
+            // clipboardMenu
+            // 
+            this.clipboardMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyIPAddressToolStripMenuItem,
+            this.copyDomainToolStripMenuItem});
+            this.clipboardMenu.Name = "clipboardMenu";
+            resources.ApplyResources(this.clipboardMenu, "clipboardMenu");
+            // 
+            // copyIPAddressToolStripMenuItem
+            // 
+            this.copyIPAddressToolStripMenuItem.Name = "copyIPAddressToolStripMenuItem";
+            resources.ApplyResources(this.copyIPAddressToolStripMenuItem, "copyIPAddressToolStripMenuItem");
+            this.copyIPAddressToolStripMenuItem.Click += new System.EventHandler(this.copyIPAddressToolStripMenuItem_Click);
+            // 
+            // copyDomainToolStripMenuItem
+            // 
+            this.copyDomainToolStripMenuItem.Name = "copyDomainToolStripMenuItem";
+            resources.ApplyResources(this.copyDomainToolStripMenuItem, "copyDomainToolStripMenuItem");
+            this.copyDomainToolStripMenuItem.Click += new System.EventHandler(this.copyDomainToolStripMenuItem_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.labelDomainName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelIPAddress, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DNSName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.IP, 1, 1);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // labelDomainName
             // 
@@ -206,6 +271,16 @@
             // 
             resources.ApplyResources(this.labelIPAddress, "labelIPAddress");
             this.labelIPAddress.Name = "labelIPAddress";
+            // 
+            // DNSName
+            // 
+            resources.ApplyResources(this.DNSName, "DNSName");
+            this.DNSName.Name = "DNSName";
+            // 
+            // IP
+            // 
+            resources.ApplyResources(this.IP, "IP");
+            this.IP.Name = "IP";
             // 
             // mainMenu
             // 
@@ -233,14 +308,14 @@
             // 
             // menuAddFolder
             // 
-            this.menuAddFolder.Image = global::CCMList.Properties.Resources.folder__plus;
+            this.menuAddFolder.Image = global::CCMAddrBook.Properties.Resources.folder__plus;
             this.menuAddFolder.Name = "menuAddFolder";
             resources.ApplyResources(this.menuAddFolder, "menuAddFolder");
             this.menuAddFolder.Click += new System.EventHandler(this.newgroupToolStripMenuItem_Click);
             // 
             // menuAddPC
             // 
-            this.menuAddPC.Image = global::CCMList.Properties.Resources.computer__plus;
+            this.menuAddPC.Image = global::CCMAddrBook.Properties.Resources.computer__plus;
             this.menuAddPC.Name = "menuAddPC";
             resources.ApplyResources(this.menuAddPC, "menuAddPC");
             this.menuAddPC.Click += new System.EventHandler(this.newPCToolStripMenuItem_Click);
@@ -277,14 +352,14 @@
             // 
             // menuProperties
             // 
-            this.menuProperties.Image = global::CCMList.Properties.Resources.computer__pencil;
+            this.menuProperties.Image = global::CCMAddrBook.Properties.Resources.computer__pencil;
             this.menuProperties.Name = "menuProperties";
             resources.ApplyResources(this.menuProperties, "menuProperties");
             this.menuProperties.Click += new System.EventHandler(this.menuProperties_Click);
             // 
             // menuDeleteNode
             // 
-            this.menuDeleteNode.Image = global::CCMList.Properties.Resources.computer__minus;
+            this.menuDeleteNode.Image = global::CCMAddrBook.Properties.Resources.computer__minus;
             this.menuDeleteNode.Name = "menuDeleteNode";
             resources.ApplyResources(this.menuDeleteNode, "menuDeleteNode");
             this.menuDeleteNode.Click += new System.EventHandler(this.menuDeleteNode_Click);
@@ -334,7 +409,6 @@
             this.menuExportPCList});
             this.menuTools.Name = "menuTools";
             resources.ApplyResources(this.menuTools, "menuTools");
-            this.menuTools.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
             // menuOptions
             // 
@@ -349,14 +423,14 @@
             // 
             // menuImportPCList
             // 
-            this.menuImportPCList.Image = global::CCMList.Properties.Resources.folder_import;
+            this.menuImportPCList.Image = global::CCMAddrBook.Properties.Resources.folder_import;
             this.menuImportPCList.Name = "menuImportPCList";
             resources.ApplyResources(this.menuImportPCList, "menuImportPCList");
             this.menuImportPCList.Click += new System.EventHandler(this.menuImportPCList_Click);
             // 
             // menuExportPCList
             // 
-            this.menuExportPCList.Image = global::CCMList.Properties.Resources.folder_export;
+            this.menuExportPCList.Image = global::CCMAddrBook.Properties.Resources.folder_export;
             this.menuExportPCList.Name = "menuExportPCList";
             resources.ApplyResources(this.menuExportPCList, "menuExportPCList");
             this.menuExportPCList.Click += new System.EventHandler(this.menuExportPCList_Click);
@@ -389,7 +463,7 @@
             // buttonNewFolder
             // 
             this.buttonNewFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonNewFolder.Image = global::CCMList.Properties.Resources.folder__plus;
+            this.buttonNewFolder.Image = global::CCMAddrBook.Properties.Resources.folder__plus;
             resources.ApplyResources(this.buttonNewFolder, "buttonNewFolder");
             this.buttonNewFolder.Name = "buttonNewFolder";
             this.buttonNewFolder.Padding = new System.Windows.Forms.Padding(5);
@@ -398,7 +472,7 @@
             // buttonNewNode
             // 
             this.buttonNewNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonNewNode.Image = global::CCMList.Properties.Resources.computer__plus;
+            this.buttonNewNode.Image = global::CCMAddrBook.Properties.Resources.computer__plus;
             resources.ApplyResources(this.buttonNewNode, "buttonNewNode");
             this.buttonNewNode.Name = "buttonNewNode";
             this.buttonNewNode.Padding = new System.Windows.Forms.Padding(5);
@@ -407,7 +481,7 @@
             // buttonEditNode
             // 
             this.buttonEditNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonEditNode.Image = global::CCMList.Properties.Resources.computer__pencil;
+            this.buttonEditNode.Image = global::CCMAddrBook.Properties.Resources.computer__pencil;
             resources.ApplyResources(this.buttonEditNode, "buttonEditNode");
             this.buttonEditNode.Name = "buttonEditNode";
             this.buttonEditNode.Padding = new System.Windows.Forms.Padding(5);
@@ -416,7 +490,7 @@
             // buttonConnect
             // 
             this.buttonConnect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonConnect.Image = global::CCMList.Properties.Resources.computer_network;
+            this.buttonConnect.Image = global::CCMAddrBook.Properties.Resources.computer_network;
             resources.ApplyResources(this.buttonConnect, "buttonConnect");
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Padding = new System.Windows.Forms.Padding(5);
@@ -425,7 +499,7 @@
             // buttonSaveList
             // 
             this.buttonSaveList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonSaveList.Image = global::CCMList.Properties.Resources.folder_export;
+            this.buttonSaveList.Image = global::CCMAddrBook.Properties.Resources.folder_export;
             resources.ApplyResources(this.buttonSaveList, "buttonSaveList");
             this.buttonSaveList.Name = "buttonSaveList";
             this.buttonSaveList.Padding = new System.Windows.Forms.Padding(5);
@@ -434,7 +508,7 @@
             // buttonOpenList
             // 
             this.buttonOpenList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonOpenList.Image = global::CCMList.Properties.Resources.folder_import;
+            this.buttonOpenList.Image = global::CCMAddrBook.Properties.Resources.folder_import;
             resources.ApplyResources(this.buttonOpenList, "buttonOpenList");
             this.buttonOpenList.Name = "buttonOpenList";
             this.buttonOpenList.Padding = new System.Windows.Forms.Padding(5);
@@ -443,7 +517,7 @@
             // buttonOptions
             // 
             this.buttonOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonOptions.Image = global::CCMList.Properties.Resources.wrench_screwdriver;
+            this.buttonOptions.Image = global::CCMAddrBook.Properties.Resources.wrench_screwdriver;
             resources.ApplyResources(this.buttonOptions, "buttonOptions");
             this.buttonOptions.Name = "buttonOptions";
             this.buttonOptions.Padding = new System.Windows.Forms.Padding(5);
@@ -472,7 +546,6 @@
             this.exitToolStripMenuItem});
             this.trayMenu.Name = "trayMenu";
             resources.ApplyResources(this.trayMenu, "trayMenu");
-            this.trayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.trayMenu_Opening);
             // 
             // restoreToolStripMenuItem
             // 
@@ -512,7 +585,9 @@
             this.grid.ResumeLayout(false);
             this.contextMenu.ResumeLayout(false);
             this.groupDetails.ResumeLayout(false);
-            this.groupDetails.PerformLayout();
+            this.clipboardMenu.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.toolBar.ResumeLayout(false);
@@ -572,8 +647,17 @@
         private System.Windows.Forms.TableLayoutPanel grid;
         private System.Windows.Forms.TreeView mainList;
         private System.Windows.Forms.GroupBox groupDetails;
+        private System.Windows.Forms.ContextMenuStrip clipboardMenu;
+        private System.Windows.Forms.ToolStripMenuItem copyIPAddressToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyDomainToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label labelDomainName;
         private System.Windows.Forms.Label labelIPAddress;
+        private System.Windows.Forms.Label DNSName;
+        private System.Windows.Forms.Label IP;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem copyIPAddressToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem copyDomainNameToolStripMenuItem;
     }
 }
 

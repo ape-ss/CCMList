@@ -12,16 +12,20 @@ using System.Net;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Net.Sockets;
 
-namespace CCMList
+namespace CCMAddrBook
 {
     public partial class MainWindow : Form
     {
 
-        //private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\CCMList\";
-        private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\CCMList\";
+        //private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\CCMAddrBook\";
+        private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\CCMAddrBook\";
         private string PcAddress;
         private string DomainName;
+        public string SelectedDomainName { get; set; }
+        public string SelectedIPAddress { get; set; }
+
         /// <summary>
         /// Метод сохраняет дерево из TreeView в XML файл
         /// </summary>
@@ -30,14 +34,14 @@ namespace CCMList
         {
             List<ListNode> list = new List<ListNode>();
             // Компонуем список для сериализации
-            foreach (TreeNode item in Nodes)
+            for (int i = 0; i < mainList.Nodes.Count; i++)
             {
-                list.Add(new ListNode(item.Name, item.Text, item.Level, item.ImageIndex, item.SelectedImageIndex, (item.Parent == null)?0:item.Parent.Index));
-                if (item.Nodes != null)
+                list.Add(new ListNode(mainList.Nodes[i].Name, mainList.Nodes[i].Text, mainList.Nodes[i].Tag as string, mainList.Nodes[i].Level, mainList.Nodes[i].ImageIndex, mainList.Nodes[i].SelectedImageIndex, (mainList.Nodes[i].Parent == null) ? 0 : mainList.Nodes[i].Parent.Index));
+                if (mainList.Nodes[i].Nodes != null)
                 {
-                    foreach (TreeNode citem in item.Nodes)
+                    for (int j = 0; j < mainList.Nodes[i].Nodes.Count; j++)
                     {
-                        list.Add(new ListNode(citem.Name, citem.Text, citem.Level, citem.ImageIndex, citem.SelectedImageIndex, (citem.Parent == null) ? 0 : citem.Parent.Index));
+                        list.Add(new ListNode(mainList.Nodes[i].Nodes[j].Name, mainList.Nodes[i].Nodes[j].Text, mainList.Nodes[i].Nodes[j].Tag as string, mainList.Nodes[i].Nodes[j].Level, mainList.Nodes[i].Nodes[j].ImageIndex, mainList.Nodes[i].Nodes[j].SelectedImageIndex, (mainList.Nodes[i].Nodes[j].Parent == null) ? 0 : mainList.Nodes[i].Nodes[j].Parent.Index));
                     }
                 }
             }
@@ -81,6 +85,7 @@ namespace CCMList
                 {
                     TreeNode tmp = new TreeNode(item.Text, item.ImageIndex, item.SelectedImageIndex);
                     tmp.Name = item.Name;
+                    tmp.Tag = item.DomainName;
                     if (item.Level == 0)
                     {
                         Nodes.Add(tmp);
@@ -93,6 +98,9 @@ namespace CCMList
             }
         }
 
+        /// <summary>
+        /// Конструктор главного окна приложения
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -123,6 +131,9 @@ namespace CCMList
             menuStatusbarState.Checked = Properties.Settings.Default.StatusBarState; ;
         }
 
+        /// <summary>
+        /// Метод добавления узла в дерево рабочих станций
+        /// </summary>
         private void AddFolder()
         {
             AddFolderDialog fd = new AddFolderDialog();
@@ -132,24 +143,35 @@ namespace CCMList
             }
         }
 
+        /// <summary>
+        /// Метод добавления компьютера в узел дерева рабочих станций
+        /// </summary>
         private void AddPC()
         {
-            AddPCDialog pcd = new AddPCDialog();
-            if (pcd.ShowDialog(this) == DialogResult.OK)
+            if (mainList.SelectedNode.Level == 0)
             {
-                TreeNode node = new TreeNode(pcd.FrendlyName, 3, 3);
-                node.Name = pcd.DomainName;
-                try
+                AddPCDialog pcd = new AddPCDialog();
+                if (pcd.ShowDialog(this) == DialogResult.OK)
                 {
-                    mainList.SelectedNode.Nodes.Add(node);
-                }
-                catch (Exception E)
-                {
-                    MessageBox.Show(this, ResMessages.addFolder, ResMessages.addFolderCaption);
+                    TreeNode node = new TreeNode(pcd.FrendlyName, 3, 3);
+                    node.Name = pcd.IPAddress;
+                    node.Tag = pcd.DomainName;
+                    try
+                    {
+                        mainList.SelectedNode.Nodes.Add(node);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(this, ResMessages.addFolder, ResMessages.addFolderCaption);
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show(this, "You can add PC only in folders");
+            }
         }
-
+        
         private void buttonNewFolder_Click(object sender, EventArgs e)
         {
             AddFolder();
@@ -173,22 +195,32 @@ namespace CCMList
             }
         }
 
-        private void buttonSaveList_Click(object sender, EventArgs e)
+        private void SaveListFromTree()
         {
             saveDialog.Filter = "XML Files|*.xml";
             if (saveDialog.ShowDialog(this) == DialogResult.OK)
             {
                 SaveTree(mainList.Nodes, saveDialog.FileName);
-            }            
+            }
         }
 
-        private void buttonOpenList_Click(object sender, EventArgs e)
+        private void LoadListToTree()
         {
             openDialog.Filter = "XML Files|*.xml";
             if (openDialog.ShowDialog(this) == DialogResult.OK)
             {
                 LoadTree(mainList.Nodes, openDialog.FileName);
             }
+        }
+
+        private void buttonSaveList_Click(object sender, EventArgs e)
+        {
+            SaveListFromTree();
+        }
+
+        private void buttonOpenList_Click(object sender, EventArgs e)
+        {
+            LoadListToTree();
         }
 
         private bool CheckCcmViewer()
@@ -203,12 +235,7 @@ namespace CCMList
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveTree(mainList.Nodes, homeDir + "pclist.xml");
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                Properties.Settings.Default.MainFormLocation = Properties.Settings.Default.MainFormLocation;
-                Properties.Settings.Default.MainFormSize = Properties.Settings.Default.MainFormSize;
-            }
-            else
+            if (WindowState != FormWindowState.Minimized)
             {
                 Properties.Settings.Default.MainFormLocation = Location;
                 Properties.Settings.Default.MainFormSize = Size;
@@ -216,21 +243,15 @@ namespace CCMList
             Properties.Settings.Default.Save();
         }
 
+        private void SetSettings()
+        {
+            DialogOptions Settings = new DialogOptions();
+            Settings.ShowDialog();
+        }
+
         private void buttonOptions_Click(object sender, EventArgs e)
         {
-            if (!CheckCcmViewer())
-            {
-                openDialog.Filter = "";
-                if (openDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    Properties.Settings.Default.CcmViewerPath = openDialog.FileName;
-                }
-                Properties.Settings.Default.Save();
-            }
-            else
-            {
-                MessageBox.Show(Properties.Settings.Default.CcmViewerPath, ResMessages.optCcmPathCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            SetSettings();
         }
 
         private void mainList_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -238,6 +259,9 @@ namespace CCMList
             ConnectToPC();
         }
 
+        /// <summary>
+        /// Метод, который запускает подключение к удаленному компьютеру
+        /// </summary>
         private void ConnectToPC()
         {
             if (!CheckCcmViewer())
@@ -286,11 +310,12 @@ namespace CCMList
             }
             else
             {
-                AddPCDialog pcd = new AddPCDialog(mainList.SelectedNode.Name, mainList.SelectedNode.Text);
+                AddPCDialog pcd = new AddPCDialog(mainList.SelectedNode.Name, mainList.SelectedNode.Tag as string, mainList.SelectedNode.Text);
                 if (pcd.ShowDialog(this) == DialogResult.OK)
                 {
                     mainList.SelectedNode.Text = pcd.FrendlyName;
-                    mainList.SelectedNode.Name = pcd.DomainName;
+                    mainList.SelectedNode.Name = pcd.IPAddress;
+                    mainList.SelectedNode.Tag = new String(pcd.DomainName.ToCharArray());
                 }
             }
         }
@@ -305,7 +330,6 @@ namespace CCMList
             if (this.WindowState == FormWindowState.Minimized)
             {
                 Hide();
-                trayIcon.Visible = true;
             }
         }
 
@@ -313,14 +337,12 @@ namespace CCMList
         {
             Show();
             this.WindowState = FormWindowState.Normal;
-            trayIcon.Visible = false;
         }
 
         private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Show();
             this.WindowState = FormWindowState.Normal;
-            trayIcon.Visible = false;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -333,7 +355,7 @@ namespace CCMList
             switch (e.KeyChar)
             {
                 case (char)Keys.Enter:
-                    buttonConnect.PerformClick();
+                    ConnectToPC();
                     break;
             }
         }
@@ -343,22 +365,25 @@ namespace CCMList
             switch (e.KeyCode)
             {
                 case Keys.F4:
-                    editNodeToolStripMenuItem.PerformClick();
+                    EditNode();
                     break;
             }
         }
 
+        /// <summary>
+        /// Сразу после выбора нового текущего элемента в списке определяем
+        /// доменное имя по IP-адресу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mainList_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //TODO: Добавить определение хоста по айпи
             if (e.Node.Level != 0)
             {
-                statusIpAddress.Text = e.Node.Name;
-                labelIPAddress.Text = PcAddress + e.Node.Name;
-                //IPAddress addr = IPAddress.Parse(e.Node.Name);
-                IPHostEntry host = Dns.GetHostByAddress(e.Node.Name);
-                string[] domain = host.HostName.Split(new char[] { '.' });
-                labelDomainName.Text = DomainName + domain[0];
+                IP.Text = e.Node.Name;
+                SelectedIPAddress = e.Node.Name;
+                DNSName.Text = e.Node.Tag.ToString();
+                SelectedDomainName = e.Node.Tag.ToString();
             }
         }
 
@@ -367,24 +392,9 @@ namespace CCMList
             EditNode();
         }
 
-        private void contextMenu_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
         private void addNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            buttonNewNode.PerformClick();
-        }
-
-        private void trayMenu_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            AddPC();
         }
 
         private void statusbarToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
@@ -440,17 +450,89 @@ namespace CCMList
 
         private void menuOptions_Click(object sender, EventArgs e)
         {
-            buttonOptions.PerformClick();
+            SetSettings();
         }
 
         private void menuImportPCList_Click(object sender, EventArgs e)
         {
-            buttonOpenList.PerformClick();
+            LoadListToTree();
         }
 
         private void menuExportPCList_Click(object sender, EventArgs e)
         {
-            buttonSaveList.PerformClick();
+            SaveListFromTree();
+        }
+
+        private void mainList_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item, DragDropEffects.Move);
+        }
+
+        private void mainList_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+            Point pt = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
+            mainList.SelectedNode = ((TreeView)sender).GetNodeAt(pt);
+        }
+
+        private void mainList_DragDrop(object sender, DragEventArgs e)
+        {
+            TreeNode newNode;
+            if (e.Data.GetDataPresent("System.Windows.Forms.TreeNode",false))
+            {
+                Point pt = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
+                TreeNode destNode = ((TreeView)sender).GetNodeAt(pt);
+                newNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
+                if (destNode.Level == 0)
+                {
+                    destNode.Nodes.Add((TreeNode)newNode.Clone());
+                    destNode.Expand();
+                    //Remove Original Node
+                    newNode.Remove();
+                }
+                if (destNode.Level == 1)
+                {
+                    destNode.Parent.Nodes.Insert(destNode.Index + 1, (TreeNode)newNode.Clone());
+                    destNode.Parent.Expand();
+                    newNode.Remove();
+                }
+            }
+        }
+
+        private void copyIPAddressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(IP.Text);
+        }
+
+        private void copyDomainToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(DNSName.Text);
+        }
+
+        private void mainList_MouseDown(object sender, MouseEventArgs e)
+        {
+            Point pt = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
+            mainList.SelectedNode = ((TreeView)sender).GetNodeAt(pt);
+        }
+
+        private void mainList_DragOver(object sender, DragEventArgs e)
+        {
+            Point pt = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
+            mainList.SelectedNode = ((TreeView)sender).GetNodeAt(pt);
+        }
+
+        private void copyIPAddressToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(SelectedIPAddress);
+        }
+
+        private void copyDomainNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(SelectedDomainName);
         }
     }
 }

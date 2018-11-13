@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CCMList {
+namespace CCMAddrBook {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CCMList {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CCMList.ResMessages", typeof(ResMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CCMAddrBook.ResMessages", typeof(ResMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -119,216 +119,147 @@
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="edDomainName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="labelSCCMPath.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="edDomainName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 81</value>
-  </data>
-  <data name="edDomainName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="edDomainName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
-  </data>
-  <data name="edDomainName.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;edDomainName.Name" xml:space="preserve">
-    <value>edDomainName</value>
-  </data>
-  <data name="&gt;&gt;edDomainName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;edDomainName.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;edDomainName.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 58</value>
-  </data>
-  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Domain name:</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lbAddress.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbAddress.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="labelSCCMPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 5</value>
   </data>
-  <data name="lbAddress.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelSCCMPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="lbAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+  <data name="labelSCCMPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
   </data>
-  <data name="lbAddress.TabIndex" type="System.Int32, mscorlib">
+  <data name="labelSCCMPath.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="lbAddress.Text" xml:space="preserve">
-    <value>IP address:</value>
+  <data name="labelSCCMPath.Text" xml:space="preserve">
+    <value>SCCM path:</value>
   </data>
-  <data name="&gt;&gt;lbAddress.Name" xml:space="preserve">
-    <value>lbAddress</value>
+  <data name="&gt;&gt;labelSCCMPath.Name" xml:space="preserve">
+    <value>labelSCCMPath</value>
   </data>
-  <data name="&gt;&gt;lbAddress.Type" xml:space="preserve">
+  <data name="&gt;&gt;labelSCCMPath.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbAddress.Parent" xml:space="preserve">
+  <data name="&gt;&gt;labelSCCMPath.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;lbAddress.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;labelSCCMPath.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="edIpAddress.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="EdSCCMPath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="edIpAddress.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="EdSCCMPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 28</value>
   </data>
-  <data name="edIpAddress.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="EdSCCMPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="edIpAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+  <data name="EdSCCMPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 20</value>
   </data>
-  <data name="edIpAddress.TabIndex" type="System.Int32, mscorlib">
+  <data name="EdSCCMPath.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;edIpAddress.Name" xml:space="preserve">
-    <value>edIpAddress</value>
+  <data name="&gt;&gt;EdSCCMPath.Name" xml:space="preserve">
+    <value>EdSCCMPath</value>
   </data>
-  <data name="&gt;&gt;edIpAddress.Type" xml:space="preserve">
+  <data name="&gt;&gt;EdSCCMPath.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;edIpAddress.Parent" xml:space="preserve">
+  <data name="&gt;&gt;EdSCCMPath.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;edIpAddress.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;EdSCCMPath.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="BtSelect.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 111</value>
+  <data name="BtSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 56</value>
   </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+  <data name="BtSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
+  <data name="BtSelect.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="BtSelect.Text" xml:space="preserve">
+    <value>Select...</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Frendly name:</value>
+  <data name="&gt;&gt;BtSelect.Name" xml:space="preserve">
+    <value>BtSelect</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="edFrendlyName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="edFrendlyName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 134</value>
-  </data>
-  <data name="edFrendlyName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="edFrendlyName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
-  </data>
-  <data name="edFrendlyName.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;edFrendlyName.Name" xml:space="preserve">
-    <value>edFrendlyName</value>
-  </data>
-  <data name="&gt;&gt;edFrendlyName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;edFrendlyName.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;edFrendlyName.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="btAddPC.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btAddPC.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btAddPC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 164</value>
-  </data>
-  <data name="btAddPC.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="btAddPC.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 23</value>
-  </data>
-  <data name="btAddPC.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btAddPC.Text" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
-  <data name="&gt;&gt;btAddPC.Name" xml:space="preserve">
-    <value>btAddPC</value>
-  </data>
-  <data name="&gt;&gt;btAddPC.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtSelect.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btAddPC.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtSelect.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;btAddPC.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;BtSelect.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtOk.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="BtOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>183, 85</value>
+  </data>
+  <data name="BtOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 24</value>
+  </data>
+  <data name="BtOk.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="BtOk.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="&gt;&gt;BtOk.Name" xml:space="preserve">
+    <value>BtOk</value>
+  </data>
+  <data name="&gt;&gt;BtOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtOk.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;BtOk.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="BtApply.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="BtApply.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 85</value>
+  </data>
+  <data name="BtApply.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 24</value>
+  </data>
+  <data name="BtApply.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="BtApply.Text" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="&gt;&gt;BtApply.Name" xml:space="preserve">
+    <value>BtApply</value>
+  </data>
+  <data name="&gt;&gt;BtApply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtApply.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;BtApply.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -337,10 +268,10 @@
     <value>0, 0</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 192</value>
+    <value>361, 112</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -358,8 +289,11 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="edDomainName" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbAddress" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="edIpAddress" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="edFrendlyName" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btAddPC" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelSCCMPath" Row="0" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="EdSCCMPath" Row="1" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="BtSelect" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BtOk" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="BtApply" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
+  <metadata name="openDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -367,16 +301,19 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>187, 192</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+    <value>361, 112</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Add PC</value>
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;openDialog.Name" xml:space="preserve">
+    <value>openDialog</value>
+  </data>
+  <data name="&gt;&gt;openDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>AddPCDialog</value>
+    <value>DialogOptions</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

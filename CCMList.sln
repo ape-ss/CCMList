@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCMList", "CCMConsole\CCMList.csproj", "{6DC6E719-CA88-4CFB-806C-4AC25810661F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCMAddrBook", "CCMConsole\CCMAddrBook.csproj", "{6DC6E719-CA88-4CFB-806C-4AC25810661F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE646463-662F-47CC-A280-89548B8EF9D8}
 	EndGlobalSection
 EndGlobal
