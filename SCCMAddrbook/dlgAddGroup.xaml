@@ -1,0 +1,22 @@
+﻿<Window x:Class="SCCMAddrbook.dlgAddGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCCMAddrbook"
+        mc:Ignorable="d"
+        Title="{x:Static local:Lang.wtGroupProperties}" Width="189" SnapsToDevicePixels="True" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" Height="132" ResizeMode="NoResize">
+    <Window.Background>
+        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+    </Window.Background>
+    <Grid UseLayoutRounding="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Margin="5" Content="{x:Static local:Lang.lbGroupName}" Height="16" Padding="0" VerticalContentAlignment="Center"/>
+        <TextBox Name="Group" Grid.Row="1" Margin="5" Height="22" TabIndex="0" VerticalContentAlignment="Center"/>
+        <Button Name="buttonSubmit" Content="{x:Static local:Lang.btConfirm}" Grid.Row="2" Margin="5" Click="buttonSubmit_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="24"/>
+    </Grid>
+</Window>

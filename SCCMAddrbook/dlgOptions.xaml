@@ -1,0 +1,48 @@
+﻿<Window x:Class="SCCMAddrbook.dlgOptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCCMAddrbook"
+        mc:Ignorable="d"
+        Title="{x:Static local:Lang.wtOptions}" Height="217.043" Width="546.277" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" UseLayoutRounding="True" SnapsToDevicePixels="True" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="{x:Static local:Lang.lbSCCMPath}" Grid.Row="0"/>
+        <Grid Margin="5" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="EdSccmPath" Grid.Column="0"/>
+            <Button x:Name="BtBrowse" Content=". . ." Width="30" Grid.Column="1" Click="BtBrowse_Click"></Button>
+        </Grid>
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <GroupBox Margin="5" Header="{x:Static local:Lang.gbWindow}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Grid.Column="0">
+                <StackPanel>
+                    <CheckBox x:Name="CbSavePosition" Content="{x:Static local:Lang.cbSavePosition}" Margin="5"/>
+                    <CheckBox x:Name="CbSaveSize" Content="{x:Static local:Lang.cbSaveSize}" Margin="5"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Margin="5" Header="{x:Static local:Lang.gbConnection}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Grid.Column="1">
+                <StackPanel>
+                    <RadioButton x:Name="RbSccmViewer" Content="{x:Static local:Lang.rbSCCM}" Margin="5" GroupName="Connection"/>
+                    <RadioButton x:Name="RbRdp" Content="{x:Static local:Lang.rbRemAssis}" Margin="5" GroupName="Connection"/>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+        <StackPanel Grid.Row="3" Margin="5" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button x:Name="BtConfirm" Content="{x:Static local:Lang.btConfirm}" Margin="5" Padding="5,1" IsDefault="True" Click="BtConfirm_Click"/>
+            <Button x:Name="BtSave" Content="{x:Static local:Lang.btSave}" Margin="5" Padding="5,1" Click="BtSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

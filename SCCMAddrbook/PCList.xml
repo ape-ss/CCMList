@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pclist>
+  <tvbv name="10003/0564">
+    <pc name="4 Окно" ipaddress="10.33.224.27" domain="ws-03564-40896" />
+    <pc name="5 Окно" ipaddress="10.33.224.176" domain="ws-03564-40895" />
+    <pc name="6 Окно" ipaddress="10.33.224.77" domain="ws-03564-40894" />
+  </tvbv>
+  <tvbv name="10003/0565">
+    <pc name="Штепенко О. В." ipaddress="10.33.226.205" domain="ws-03565-40872" />
+    <pc name="Шиян В. С." ipaddress="10.33.226.195" domain="ws-03564-40873" />
+  </tvbv>
+  <tvbv name="10003/0566" />
+</pclist>

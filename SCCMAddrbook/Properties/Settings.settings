@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SCCMAddrbook.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SccmPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SavePosition" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SaveSize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="RCApplication" Type="SCCMAddrbook.RCApps" Scope="User">
+      <Value Profile="(Default)">sccmviewer</Value>
+    </Setting>
+    <Setting Name="WindowLocation" Type="System.Windows.Point" Scope="User">
+      <Value Profile="(Default)">0,0</Value>
+    </Setting>
+    <Setting Name="WindowSize" Type="System.Windows.Size" Scope="User">
+      <Value Profile="(Default)">0,0</Value>
+    </Setting>
+    <Setting Name="ShowToolbar" Type="System.Windows.Visibility" Scope="User">
+      <Value Profile="(Default)">Visible</Value>
+    </Setting>
+    <Setting Name="ShowFullInfo" Type="System.Windows.Visibility" Scope="User">
+      <Value Profile="(Default)">Visible</Value>
+    </Setting>
+    <Setting Name="ShowStatusBar" Type="System.Windows.Visibility" Scope="User">
+      <Value Profile="(Default)">Visible</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

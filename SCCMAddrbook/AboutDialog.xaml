@@ -1,0 +1,32 @@
+﻿<Window x:Class="SCCMAddrbook.AboutDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCCMAddrbook"
+        mc:Ignorable="d"
+        Title="{x:Static local:Lang.wtAbout}" Height="263.298" Width="415.426" UseLayoutRounding="True" WindowStyle="ToolWindow" SnapsToDevicePixels="True" WindowStartupLocation="CenterOwner" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Margin="5" Source="res/remote2.png"/>
+        <StackPanel Grid.Column="1" Grid.Row="0" Margin="5">
+            <TextBlock Text="{x:Static local:Lang.lbAppTitle}" FontSize="22" FontFamily="Segoe UI Light" Margin="5"/>
+            <TextBlock Text="{x:Static local:Lang.lbVersion}" FontFamily="Segoe UI Light" Margin="5,0,5,5"/>
+            <TextBlock Text="{x:Static local:Lang.lbCopyright}" FontFamily="Segoe UI Light" Margin="5,0,5,5"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+            <TextBlock Text="{x:Static local:Lang.lbIconsInfo}" FontFamily="Segoe UI Light" Margin="5"/>
+            <TextBlock FontFamily="Segoe UI Light" Margin="5,0,5,5">
+                <Hyperlink NavigateUri="http://p.yusukekamiyamane.com/">http://p.yusukekamiyamane.com/</Hyperlink>
+            </TextBlock>
+        </StackPanel>
+        <Button Content="{x:Static local:Lang.btClose}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" Click="Button_Click" />
+    </Grid>
+</Window>

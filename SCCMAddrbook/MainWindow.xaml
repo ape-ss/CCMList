@@ -1,0 +1,210 @@
+﻿<Window x:Name="MainWindow1" x:Class="SCCMAddrbook.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCCMAddrbook"
+        xml:lang="en-US"
+        mc:Ignorable="d"
+        Title="SCCM Address Book" Height="536" Width="262" SnapsToDevicePixels="True" UseLayoutRounding="True" Activated="Window_Activated" Closing="Window_Closing" Icon="res/remote2.ico" TextOptions.TextFormattingMode="Display">
+  
+   
+    <Grid DataContext="{Binding Source={StaticResource PCList}}">
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Top" Grid.Row="0" UseLayoutRounding="True">
+            <MenuItem Header="{x:Static local:Lang.mmFile}">
+                <MenuItem Header="{x:Static local:Lang.mmiNewGroup}" Name="miNewGroup" Click="MiNewGroup_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/folder--plus.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{x:Static local:Lang.mmiNewPC}" Name="miNewPC" Click="MiNewPC_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/computer--plus.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="{x:Static local:Lang.mmiLaunchSCCM}" Name="miLaunchSCCMViewer" Click="MiLaunchSCCMViewer_Click"/>
+                <MenuItem Header="{x:Static local:Lang.mmiConnectPC}" Name="miConnectToPc" Click="MiConnectToPc_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/computer-network.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="{x:Static local:Lang.mmiExit}" Name="miExit" Click="miExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static local:Lang.mmEdit}">
+                <MenuItem Header="{x:Static local:Lang.mmiProperties}" Name="miEditNode" Click="MiEditNode_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/computer--pencil.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{x:Static local:Lang.mmiDeleteNode}" Name="miDeleteNode" Click="MiDeleteNode_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/computer--minus.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{x:Static local:Lang.mmiRename}" IsEnabled="False" Name="miRenameNode"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static local:Lang.mmView}">
+                <MenuItem Header="{x:Static local:Lang.mmiToolBar}" Name="miViewToolbar" IsCheckable="True" Checked="MiViewToolbar_Checked" Unchecked="MiViewToolbar_Unchecked"/>
+                <MenuItem Header="{x:Static local:Lang.mmiFullInfo}" Name="miViewFullinfo" IsCheckable="True" Checked="MiViewFullinfo_Checked" Unchecked="MiViewFullinfo_Unchecked"/>
+                <MenuItem Header="{x:Static local:Lang.mmiStatusBar}" Name="miViewStatusbar" IsCheckable="True" Checked="MiViewStatusbar_Checked" Unchecked="MiViewStatusbar_Unchecked"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static local:Lang.mmTools}">
+                <MenuItem Header="{x:Static local:Lang.mmiOptions}" Name="miOptions" Click="MiOptions_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/wrench-screwdriver.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="{x:Static local:Lang.mmiImportList}" Name="miImportAddressBook" Click="MiImportAddressBook_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/folder-import.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{x:Static local:Lang.mmiExportList}" Name="miExportAddressBook" Click="MiExportAddressBook_Click">
+                    <MenuItem.Icon>
+                        <Image Source="res/folder-export.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{x:Static local:Lang.mmHelp}">
+                <MenuItem Header="{x:Static local:Lang.mmiAbout}" Name="miAbout" Click="MiAbout_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray x:Name="TbTray" VerticalAlignment="Top" Grid.Row="1">
+            <ToolBarTray.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuBarColorKey}}"/>
+            </ToolBarTray.Background>
+            <ToolBar x:Name="TbMain" Band="0">
+                <ToolBar.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuBarColorKey}}"/>
+                </ToolBar.Background>
+                <Button Name="buttonAddGroup" Click="buttonAddGroup_Click" ToolTip="{x:Static local:Lang.tbtAddGroup}">
+                    <Image Source="res/folder--plus.png" Margin="5"></Image>
+                </Button>
+                <Button Name="buttonAddPC" Click="buttonAddPC_Click" ToolTip="{x:Static local:Lang.tbtAddNode}">
+                    <Image Source="res/computer--plus.png" Margin="5"></Image>
+                </Button>
+                <Button Name="buttonEditNode" Click="ButtonEditNode_Click" ToolTip="{x:Static local:Lang.tbtEditNode}">
+                    <Image Source="res/computer--pencil.png" Margin="5"></Image>
+                </Button>
+                <Button Name="buttonConnectPC" Click="ButtonConnectPC_Click" ToolTip="{x:Static local:Lang.tbtConnectTo}">
+                    <Image Source="res/computer-network.png" Margin="5"></Image>
+                </Button>
+                <Button Name="buttonImportList" Click="buttonImportList_Click" ToolTip="{x:Static local:Lang.tbtImportList}">
+                    <Image Source="res/folder-import.png" Margin="5"></Image>
+                </Button>
+                <Button Name="buttonExportList" Click="buttonExportList_Click" ToolTip="{x:Static local:Lang.tbtExportList}">
+                    <Image Source="res/folder-export.png" Margin="5"></Image>
+                </Button>
+                <Button Name="buttonOptions" Click="ButtonOptions_Click" ToolTip="{x:Static local:Lang.tbtOptions}">
+                    <Image Source="wrench-screwdriver.png" Margin="5"></Image>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar x:Name="sbInfo" Grid.Row="4" VerticalAlignment="Center" UseLayoutRounding="True">
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Static local:Lang.sbItems}"/>
+                    <TextBlock Name="statusItems" MinWidth="60"></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Static local:Lang.sbLast}"/>
+                    <TextBlock Name="statusLastConnect" MinWidth="60"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        <TreeView Name="mainList"  Grid.Row="2" ItemsSource="{Binding XPath=/pclist/*}" SelectedItemChanged="MainList_SelectedItemChanged" UseLayoutRounding="True" IsTextSearchCaseSensitive="True" MouseDoubleClick="MainList_MouseDoubleClick" PreviewMouseRightButtonDown="MainList_PreviewMouseRightButtonDown" AllowDrop="True" PreviewMouseLeftButtonDown="MainList_PreviewMouseLeftButtonDown" ClipToBounds="True">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="MainList_PreviewMouseLeftButtonDown" />
+                    <EventSetter Event="MouseMove" Handler="MainList_MouseMove" />
+                    <EventSetter Event="Drop" Handler="MainList_Drop" />
+                    <EventSetter Event="DragOver" Handler="MainList_DragOver" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static local:Lang.mmiNewGroup}" Name="CmAddGroup" Click="CmAddGroup_Click">
+                        <MenuItem.Icon>
+                            <Image Source="res/folder--plus.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static local:Lang.mmiNewPC}" Name="CmAddNode" Click="CmAddNode_Click">
+                        <MenuItem.Icon>
+                            <Image Source="res/computer--plus.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static local:Lang.mmiProperties}" Name="CmEditNode" Click="CmEditNode_Click">
+                        <MenuItem.Icon>
+                            <Image Source="res/computer--pencil.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static local:Lang.mmiDeleteNode}" Name="CmRemoveNode" Click="CmRemoveNode_Click">
+                        <MenuItem.Icon>
+                            <Image Source="res/computer--minus.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="{x:Static local:Lang.mmiConnectSccm}" Name="ConnectSccm" Click="ConnectSccm_Click"/>
+                    <MenuItem Header="{x:Static local:Lang.mmiConnectRA}" Name="ConnectRA" Click="ConnectRA_Click"/>
+                    <Separator />
+                    <MenuItem Header="{x:Static local:Lang.mmiCopyIp}" Name="CmCopyIp" Click="CmCopyIp_Click" />
+                    <MenuItem Header="{x:Static local:Lang.mmiCopyDomainName}" Name="CmDomainName" Click="CmDomainName_Click" />
+                </ContextMenu>
+            </TreeView.ContextMenu>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding XPath=./*}">
+                    <StackPanel x:Name="Node" Orientation="Horizontal" Margin="3">
+                        <Image x:Name="Icon"></Image>
+                        <TextBlock x:Name="Caption" Text="{Binding XPath=@name}" Margin="3,0,0,0"></TextBlock>
+                    </StackPanel>
+                    <HierarchicalDataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Name}" Value="tvbv">
+                            <Setter TargetName="Icon" Property="Source" Value="res/folder.png" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Name}" Value="pc">
+                            <Setter TargetName="Icon" Property="Source" Value="res/computer.png" />
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=Name}" Value="tvbv"/>
+                                <Condition Binding="{Binding Path=IsExpanded, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeViewItem}}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="Icon" Property="Source" Value="res/folder-open.png" />
+                        </MultiDataTrigger>
+                    </HierarchicalDataTemplate.Triggers>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <GroupBox x:Name="gbDetails" Header="{x:Static local:Lang.gbDetails}" Grid.Row="3" Margin="5" Grid.ColumnSpan="2">
+            <GroupBox.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
+            </GroupBox.BorderBrush>
+            <StackPanel UseLayoutRounding="True">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5" Text="{x:Static local:Lang.lbIp}" />
+                    <TextBlock Margin="5" Name="textIPAddress" MinWidth="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5" Text="{x:Static local:Lang.lbDomain}" />
+                    <TextBlock Margin="5" Name="textDomainName" MinWidth="20"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
