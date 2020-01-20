@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SCCMAddrbook"
         mc:Ignorable="d"
-        Title="{x:Static local:Lang.wtOptions}" Height="217.043" Width="546.277" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" UseLayoutRounding="True" SnapsToDevicePixels="True" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="{x:Static local:Lang.wtOptions}" Height="217.043" Width="411.277" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" UseLayoutRounding="True" SnapsToDevicePixels="True" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

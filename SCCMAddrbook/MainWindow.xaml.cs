@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Linq;
+using Ini.Net;
 
 
 namespace SCCMAddrbook
@@ -29,71 +30,96 @@ namespace SCCMAddrbook
     /// </summary>
     public partial class MainWindow : Window
     {
-        Controller controller;
         public XmlDataProvider MainList { get; set; }
         public XmlDataProvider dataProvider { get; private set; }
         private XmlElement dragSource;
         private XmlElement dragTarget;
         TreeViewItem targetItem;
         TreeViewItem sourceItem;
+        private IniFile iniFile;
 
         private string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\SCCMAddrbook\";
+        private string exePath = AppDomain.CurrentDomain.BaseDirectory;
         private Point lastPoint;
 
         public MainWindow()
         {
             InitializeComponent();
-            controller = new Controller();
-            if (Properties.Settings.Default.SavePosition == true)
+            iniFile = new IniFile(exePath + "SCCMAddrbook.ini");
+            if (iniFile.ReadBoolean("Window", "SavePosition") == true)
             {
-                this.Left = Properties.Settings.Default.WindowLocation.X;
-                this.Top = Properties.Settings.Default.WindowLocation.Y;
+                this.Left = iniFile.ReadDouble("Window","X");
+                this.Top = iniFile.ReadDouble("Window", "Y");
             }
-            if (Properties.Settings.Default.SaveSize == true)
+            if (iniFile.ReadBoolean("Window", "SaveSize") == true)
             {
-                this.Width = Properties.Settings.Default.WindowSize.Width;
-                this.Height = Properties.Settings.Default.WindowSize.Height;
+                this.Width = iniFile.ReadDouble("Window", "Width");
+                this.Height = iniFile.ReadDouble("Window", "Height");
             }
-            TbTray.Visibility = Properties.Settings.Default.ShowToolbar;
-            gbDetails.Visibility = Properties.Settings.Default.ShowFullInfo;
-            sbInfo.Visibility = Properties.Settings.Default.ShowStatusBar;
-            switch (Properties.Settings.Default.ShowToolbar)
+            try
             {
-                case Visibility.Visible:
-                    miViewToolbar.IsChecked = true;
-                    break;
-                case Visibility.Collapsed:
-                    miViewToolbar.IsChecked = false;
-                    break;
+                TbTray.Visibility = (Visibility)iniFile.ReadInteger("Window", "ShowToolbar");
+                switch ((Visibility)iniFile.ReadInteger("Window", "ShowToolbar"))
+                {
+                    case Visibility.Visible:
+                        miViewToolbar.IsChecked = true;
+                        break;
+                    case Visibility.Collapsed:
+                        miViewToolbar.IsChecked = false;
+                        break;
+                }
             }
-            switch (Properties.Settings.Default.ShowFullInfo)
+            catch (Exception)
             {
-                case Visibility.Visible:
-                    miViewFullinfo.IsChecked = true;
-                    break;
-                case Visibility.Collapsed:
-                    miViewFullinfo.IsChecked = false;
-                    break;
+                TbTray.Visibility = Visibility.Visible;
+                miViewToolbar.IsChecked = true;
             }
-            switch (Properties.Settings.Default.ShowStatusBar)
+            try
             {
-                case Visibility.Visible:
-                    miViewStatusbar.IsChecked = true;
-                    break;
-                case Visibility.Collapsed:
-                    miViewStatusbar.IsChecked = false;
-                    break;
-                default:
-                    break;
+                gbDetails.Visibility = (Visibility)iniFile.ReadInteger("Window", "ShowFullInfo");
+                switch ((Visibility)iniFile.ReadInteger("Window", "ShowFullInfo"))
+                {
+                    case Visibility.Visible:
+                        miViewFullinfo.IsChecked = true;
+                        break;
+                    case Visibility.Collapsed:
+                        miViewFullinfo.IsChecked = false;
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                gbDetails.Visibility = Visibility.Visible;
+                miViewFullinfo.IsChecked = true;
+            }
+            try
+            {
+                sbInfo.Visibility = (Visibility)iniFile.ReadInteger("Window", "ShowStatusBar");
+                switch ((Visibility)iniFile.ReadInteger("Window", "ShowStatusBar"))
+                {
+                    case Visibility.Visible:
+                        miViewStatusbar.IsChecked = true;
+                        break;
+                    case Visibility.Collapsed:
+                        miViewStatusbar.IsChecked = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                sbInfo.Visibility = Visibility.Visible;
+                miViewStatusbar.IsChecked = true;
             }
             MainList = this.FindResource("PCList") as XmlDataProvider;
             if (Directory.Exists(homeDir) == false)
             {
                 Directory.CreateDirectory(homeDir);
             }
-            if (File.Exists(homeDir + "pclist.xml") == true)
+            if (File.Exists(exePath + "pclist.xml") == true)
             {
-                MainList.Source = new Uri(homeDir + "pclist.xml");
+                MainList.Source = new Uri(exePath + "pclist.xml");
             }
             else
             {
@@ -102,8 +128,8 @@ namespace SCCMAddrbook
                 doc.AppendChild(xmldec);
                 XmlElement root = doc.CreateElement("pclist");
                 doc.AppendChild(root);
-                doc.Save(homeDir + "pclist.xml");
-                MainList.Source = new Uri(homeDir + "pclist.xml");
+                doc.Save(exePath + "pclist.xml");
+                MainList.Source = new Uri(exePath + "pclist.xml");
             }
         }
 
@@ -114,15 +140,15 @@ namespace SCCMAddrbook
 
         private void SaveParams()
         {
-            dlgOptions options = new dlgOptions();
+            dlgOptions options = new dlgOptions(iniFile);
             options.Owner = this;
             if (options.ShowDialog() == true)
             {
-                Properties.Settings.Default.SccmPath = options.SCCMPath;
-                Properties.Settings.Default.SavePosition = options.SavePosition;
-                Properties.Settings.Default.SaveSize = options.SaveSize;
-                Properties.Settings.Default.RCApplication = options.RemoteControl;
-                Properties.Settings.Default.Save();
+                iniFile.WriteString("Clients", "SccmViewer", options.SCCMPath);
+                iniFile.WriteBoolean("Window", "SavePosition", options.SavePosition);
+                iniFile.WriteBoolean("Window", "SaveSize", options.SaveSize);
+                iniFile.WriteInteger("ControlApp", "AppId", (int)options.RemoteControl);
+                //Properties.Settings.Default.Save();
             }
         }
 
@@ -168,10 +194,10 @@ namespace SCCMAddrbook
         {
             try
             {
-                switch (Properties.Settings.Default.RCApplication)
+                switch ((RCApps)iniFile.ReadInteger("ControlApp", "AppId"))
                 {
                     case RCApps.sccmviewer:
-                        Process.Start(Properties.Settings.Default.SccmPath, Pc.GetAttribute("ipaddress"));
+                        Process.Start(iniFile.ReadString("Clients", "SccmViewer"), Pc.GetAttribute("ipaddress"));
                         break;
                     case RCApps.rdp:
                         Process.Start("msra.exe", "/offerra " + Pc.GetAttribute("ipaddress"));
@@ -246,7 +272,7 @@ namespace SCCMAddrbook
             {
                 MainList.Document = new XmlDocument();
                 MainList.Document.Load(openFile.FileName);
-                MainList.Document.Save(homeDir + "pclist.xml");
+                MainList.Document.Save(exePath + "pclist.xml");
                 MainList.Refresh();
             }
         }
@@ -331,17 +357,21 @@ namespace SCCMAddrbook
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (Properties.Settings.Default.SavePosition == true && this.WindowState != WindowState.Minimized)
+            if (iniFile.ReadBoolean("Window", "SavePosition") == true && this.WindowState != WindowState.Minimized)
             {
                 Point Location = new Point(this.Left, this.Top);
-                Properties.Settings.Default.WindowLocation = Location;
+                //Properties.Settings.Default.WindowLocation = Location;
+                iniFile.WriteDouble("Window", "X", Location.X);
+                iniFile.WriteDouble("Window", "Y", Location.Y);
             }
-            if (Properties.Settings.Default.SaveSize == true && this.WindowState != WindowState.Minimized)
+            if (iniFile.ReadBoolean("Window", "SaveSize") == true && this.WindowState != WindowState.Minimized)
             {
                 Size Dims = new Size(this.Width, this.Height);
-                Properties.Settings.Default.WindowSize = Dims;
+                //Properties.Settings.Default.WindowSize = Dims;
+                iniFile.WriteDouble("Window", "Width", Dims.Width);
+                iniFile.WriteDouble("Window", "Height", Dims.Height);
             }
-            Properties.Settings.Default.Save();
+            //Properties.Settings.Default.Save();
         }
 
         private void ButtonConnectPC_Click(object sender, RoutedEventArgs e)
@@ -366,37 +396,43 @@ namespace SCCMAddrbook
         private void MiViewToolbar_Checked(object sender, RoutedEventArgs e)
         {
             TbTray.Visibility = Visibility.Visible;
-            Properties.Settings.Default.ShowToolbar = Visibility.Visible;
+            //Properties.Settings.Default.ShowToolbar = Visibility.Visible;
+            iniFile.WriteInteger("Window", "ShowToolbar", (int)Visibility.Visible);
         }
 
         private void MiViewToolbar_Unchecked(object sender, RoutedEventArgs e)
         {
             TbTray.Visibility = Visibility.Collapsed;
-            Properties.Settings.Default.ShowToolbar = Visibility.Collapsed;
+            //Properties.Settings.Default.ShowToolbar = Visibility.Collapsed;
+            iniFile.WriteInteger("Window", "ShowToolbar", (int)Visibility.Collapsed);
         }
 
         private void MiViewFullinfo_Checked(object sender, RoutedEventArgs e)
         {
             gbDetails.Visibility = Visibility.Visible;
-            Properties.Settings.Default.ShowFullInfo = Visibility.Visible;
+            //Properties.Settings.Default.ShowFullInfo = Visibility.Visible;
+            iniFile.WriteInteger("Window", "ShowFullInfo", (int)Visibility.Visible);
         }
 
         private void MiViewFullinfo_Unchecked(object sender, RoutedEventArgs e)
         {
             gbDetails.Visibility = Visibility.Collapsed;
-            Properties.Settings.Default.ShowFullInfo = Visibility.Collapsed;
+            //Properties.Settings.Default.ShowFullInfo = Visibility.Collapsed;
+            iniFile.WriteInteger("Window", "ShowFullInfo", (int)Visibility.Collapsed);
         }
 
         private void MiViewStatusbar_Checked(object sender, RoutedEventArgs e)
         {
             sbInfo.Visibility = Visibility.Visible;
-            Properties.Settings.Default.ShowStatusBar = Visibility.Visible;
+            //Properties.Settings.Default.ShowStatusBar = Visibility.Visible;
+            iniFile.WriteInteger("Window", "ShowStatusBar", (int)Visibility.Visible);
         }
 
         private void MiViewStatusbar_Unchecked(object sender, RoutedEventArgs e)
         {
             sbInfo.Visibility = Visibility.Collapsed;
-            Properties.Settings.Default.ShowStatusBar = Visibility.Collapsed;
+            //Properties.Settings.Default.ShowStatusBar = Visibility.Collapsed;
+            iniFile.WriteInteger("Window", "ShowStatusBar", (int)Visibility.Collapsed);
         }
 
         private void ButtonOptions_Click(object sender, RoutedEventArgs e)
@@ -607,7 +643,8 @@ namespace SCCMAddrbook
         private void ConnectSccm_Click(object sender, RoutedEventArgs e)
         {
             XmlElement Pc = mainList.SelectedItem as XmlElement;
-            Process.Start(Properties.Settings.Default.SccmPath, Pc.GetAttribute("ipaddress"));
+            Process.Start(iniFile.ReadString("Clients", "SccmViewer"), Pc.GetAttribute("ipaddress"));
+            //Process.Start(Properties.Settings.Default.SccmPath, Pc.GetAttribute("ipaddress"));
         }
 
         private void ConnectRA_Click(object sender, RoutedEventArgs e)
@@ -617,3 +654,4 @@ namespace SCCMAddrbook
         }
     }
 }
+;

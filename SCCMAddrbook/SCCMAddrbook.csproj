@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.5.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
@@ -54,6 +54,9 @@
     <ApplicationIcon>res\remote2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ini.Net, Version=1.0.5531.18665, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini.net.1.1.0\lib\net20\Ini.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -97,10 +100,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataStore\DataStore\DataStore.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="dlgAddGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,7 +117,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controller.cs" />
-    <Compile Include="DataStore\DataStore\DataStore.xaml.cs" />
     <Compile Include="dlgAddGroup.xaml.cs">
       <DependentUpon>dlgAddGroup.xaml</DependentUpon>
     </Compile>
@@ -157,11 +155,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lang.ru-UA.resx" />
+    <EmbeddedResource Include="Lang.uk-UA.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataStore\DataStore\DataStore.xsd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

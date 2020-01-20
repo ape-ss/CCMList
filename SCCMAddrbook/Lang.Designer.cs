@@ -205,7 +205,7 @@ namespace SCCMAddrbook {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version 1.5.
+        ///   Looks up a localized string similar to Version 1.5.1.
         /// </summary>
         public static string lbVersion {
             get {

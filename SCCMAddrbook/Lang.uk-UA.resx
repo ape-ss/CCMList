@@ -118,100 +118,100 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btConfirm" xml:space="preserve">
-    <value>Confirm</value>
+    <value>Підтвердити</value>
   </data>
   <data name="btSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Зберегти</value>
   </data>
   <data name="cbSavePosition" xml:space="preserve">
-    <value>Save window position</value>
+    <value>Пам'ятати позицію вікна</value>
   </data>
   <data name="cbSaveSize" xml:space="preserve">
-    <value>Save window size</value>
+    <value>Пам'ятати розміри вікна</value>
   </data>
   <data name="gbConnection" xml:space="preserve">
-    <value>Connection</value>
+    <value>З'єднання</value>
   </data>
   <data name="gbDetails" xml:space="preserve">
-    <value>Full info</value>
+    <value>Інформація</value>
   </data>
   <data name="gbWindow" xml:space="preserve">
-    <value>Window</value>
+    <value>Вікно</value>
   </data>
   <data name="lbDomain" xml:space="preserve">
-    <value>Domain name: </value>
+    <value>Доменне ім'я:</value>
   </data>
   <data name="lbFriendlyName" xml:space="preserve">
-    <value>Friendly name: </value>
+    <value>Своє ім'я:</value>
   </data>
   <data name="lbGroupName" xml:space="preserve">
-    <value>Group name:</value>
+    <value>Ім'я групи:</value>
   </data>
   <data name="lbIp" xml:space="preserve">
-    <value>IP Address: </value>
+    <value>IP адреса: </value>
   </data>
   <data name="lbSCCMPath" xml:space="preserve">
-    <value>SCCM Viewer path: </value>
+    <value>Шлях до SCCM Viewer: </value>
   </data>
   <data name="mmEdit" xml:space="preserve">
-    <value>_Edit</value>
+    <value>_Правка</value>
   </data>
   <data name="mmFile" xml:space="preserve">
-    <value>_File</value>
+    <value>_Список</value>
   </data>
   <data name="mmHelp" xml:space="preserve">
     <value>_?</value>
   </data>
   <data name="mmiAbout" xml:space="preserve">
-    <value>_About...</value>
+    <value>_Про програму...</value>
   </data>
   <data name="mmiConnectPC" xml:space="preserve">
-    <value>Connect to PC</value>
+    <value>Підключитися до станції</value>
   </data>
   <data name="mmiDeleteNode" xml:space="preserve">
-    <value>_Delete node</value>
+    <value>_Видалити станцію</value>
   </data>
   <data name="mmiExit" xml:space="preserve">
-    <value>_Exit</value>
+    <value>_Вихід</value>
   </data>
   <data name="mmiExportList" xml:space="preserve">
-    <value>_Export address book...</value>
+    <value>_Експорт списка станцій...</value>
   </data>
   <data name="mmiFullInfo" xml:space="preserve">
-    <value>_Full info</value>
+    <value>_Інформація</value>
   </data>
   <data name="mmiImportList" xml:space="preserve">
-    <value>_Import address book...</value>
+    <value>_Імпорт списка станцій...</value>
   </data>
   <data name="mmiLaunchSCCM" xml:space="preserve">
-    <value>Launch _SCCM viewer</value>
+    <value>Запустити _SCCM viewer</value>
   </data>
   <data name="mmiNewGroup" xml:space="preserve">
-    <value>New _group...</value>
+    <value>Нова _група...</value>
   </data>
   <data name="mmiNewPC" xml:space="preserve">
-    <value>New _node...</value>
+    <value>Нова _станція...</value>
   </data>
   <data name="mmiOptions" xml:space="preserve">
-    <value>_Options...</value>
+    <value>_Налаштування...</value>
   </data>
   <data name="mmiProperties" xml:space="preserve">
-    <value>_Properties...</value>
+    <value>_Властивості...</value>
   </data>
   <data name="mmiRename" xml:space="preserve">
-    <value>_Rename</value>
+    <value>_Перейменувати</value>
   </data>
   <data name="mmiStatusBar" xml:space="preserve">
-    <value>_Status bar</value>
+    <value>_Статусний рядок</value>
   </data>
   <data name="mmiToolBar" xml:space="preserve">
-    <value>_ToolBar</value>
+    <value>_Панель інструментів</value>
   </data>
   <data name="mmTools" xml:space="preserve">
-    <value>_Tools</value>
+    <value>_Опції</value>
   </data>
   <data name="mmView" xml:space="preserve">
-    <value>_View</value>
+    <value>_Вигляд</value>
   </data>
   <data name="rbRemAssis" xml:space="preserve">
     <value>Remote Assistance</value>
@@ -220,75 +220,75 @@
     <value>SCCM Viewer</value>
   </data>
   <data name="sbItems" xml:space="preserve">
-    <value>Items: </value>
+    <value>Станцій: </value>
   </data>
   <data name="sbLast" xml:space="preserve">
-    <value>Last: </value>
+    <value>Останній: </value>
   </data>
   <data name="tbtAddGroup" xml:space="preserve">
-    <value>Add node group</value>
+    <value>Додати групу станцій</value>
   </data>
   <data name="tbtAddNode" xml:space="preserve">
-    <value>Add node</value>
+    <value>Додати станцію</value>
   </data>
   <data name="tbtConnectTo" xml:space="preserve">
-    <value>Connect to remote PC</value>
+    <value>Підключитися до станції</value>
   </data>
   <data name="tbtEditNode" xml:space="preserve">
-    <value>Edit node</value>
+    <value>Редагувати інформацію про станцію</value>
   </data>
   <data name="tbtExportList" xml:space="preserve">
-    <value>Export PC list</value>
+    <value>Експорт списка станцій</value>
   </data>
   <data name="tbtImportList" xml:space="preserve">
-    <value>Import PC list</value>
+    <value>Імпорт списка станцій</value>
   </data>
   <data name="tbtOptions" xml:space="preserve">
-    <value>Options</value>
+    <value>Налаштування</value>
   </data>
   <data name="btClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Закрити</value>
   </data>
   <data name="lbAppTitle" xml:space="preserve">
     <value>SCCM Address Book</value>
   </data>
   <data name="lbCopyright" xml:space="preserve">
-    <value>© Serhii Halushko, 2018</value>
+    <value>© Галушко С. С., 2018</value>
   </data>
   <data name="lbIconsInfo" xml:space="preserve">
-    <value>Some icons from Yusuke Kamiyamane</value>
+    <value>Деякі значки Yusuke Kamiyamane</value>
   </data>
   <data name="lbVersion" xml:space="preserve">
-    <value>Version 1.5.1</value>
+    <value>Версія 1.5.1</value>
   </data>
   <data name="mmiCopyDomainName" xml:space="preserve">
-    <value>Copy domain name</value>
+    <value>Копіювати доменне і'мя</value>
   </data>
   <data name="mmiCopyIp" xml:space="preserve">
-    <value>Copy IP address</value>
+    <value>Копіювати IP адресу</value>
   </data>
   <data name="msgEmptySelection" xml:space="preserve">
-    <value>You must select group for new node.</value>
+    <value>Потрібно обрати групу для нової станції</value>
   </data>
   <data name="msgEmptySelectionTitle" xml:space="preserve">
-    <value>Empty selection</value>
+    <value>Ничого не вибрано</value>
   </data>
   <data name="wtAbout" xml:space="preserve">
-    <value>About</value>
+    <value>Про програму</value>
   </data>
   <data name="wtGroupProperties" xml:space="preserve">
-    <value>Group properties</value>
+    <value>Властивості групи</value>
   </data>
   <data name="wtNodeProperties" xml:space="preserve">
-    <value>Node properties</value>
+    <value>Властивості станції</value>
   </data>
   <data name="wtOptions" xml:space="preserve">
-    <value>Options</value>
+    <value>Налаштування</value>
   </data>
   <data name="mmiConnectRA" xml:space="preserve">
-    <value>Connect via Remote Assistant</value>
+    <value>Зайти через Remote Assistant</value>
   </data>
   <data name="mmiConnectSccm" xml:space="preserve">
-    <value>Connect via SCCM</value>
+    <value>Зайти через SCCM</value>
   </data>
 </root>

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Ini.Net;
 
 namespace SCCMAddrbook
 {
@@ -25,20 +26,48 @@ namespace SCCMAddrbook
         public bool SaveSize { get; set; }
         public RCApps RemoteControl { get; set; }
 
-        public dlgOptions()
+        public dlgOptions(IniFile config)
         {
             InitializeComponent();
-            EdSccmPath.Text = Properties.Settings.Default.SccmPath;
-            CbSavePosition.IsChecked = Properties.Settings.Default.SavePosition;
-            CbSaveSize.IsChecked = Properties.Settings.Default.SaveSize;
-            switch(Properties.Settings.Default.RCApplication)
+            try
             {
-                case RCApps.rdp:
-                    RbRdp.IsChecked = true;
-                    break;
-                case RCApps.sccmviewer:
-                    RbSccmViewer.IsChecked = true;
-                    break;
+                EdSccmPath.Text = config.ReadString("Clients", "SccmViewer");
+            }
+            catch(Exception)
+            {
+                EdSccmPath.Text = "";
+            }
+            try
+            {
+                CbSavePosition.IsChecked = config.ReadBoolean("Window", "SavePosition");
+            }
+            catch(Exception)
+            {
+                CbSavePosition.IsChecked = false;
+            }
+            try
+            {
+                CbSaveSize.IsChecked = config.ReadBoolean("Windows", "SaveSize");
+            }
+            catch(Exception)
+            {
+                CbSaveSize.IsChecked = false;
+            }
+            try
+            {
+                switch ((RCApps)config.ReadInteger("ControlApp", "AppId"))
+                {
+                    case RCApps.rdp:
+                        RbRdp.IsChecked = true;
+                        break;
+                    case RCApps.sccmviewer:
+                        RbSccmViewer.IsChecked = true;
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                RbSccmViewer.IsChecked = true;
             }
         }
 
