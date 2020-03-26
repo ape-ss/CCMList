@@ -279,7 +279,7 @@ namespace SCCMAddrbook
 
         private void RunSCCMViewer()
         {
-            Process.Start(Properties.Settings.Default.SccmPath);
+            Process.Start(iniFile.ReadString("Clients", "SccmViewer"));
         }
 
         private void buttonAddGroup_Click(object sender, RoutedEventArgs e)
